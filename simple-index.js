@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { CallToolRequestSchema, ErrorCode, ListToolsRequestSchema, McpError } from '@modelcontextprotocol/sdk/types.js';
+
+// Use CommonJS requires for better compatibility in Docker environments
+const { Server } = require('@modelcontextprotocol/sdk/server');
+const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio');
+const { CallToolRequestSchema, ErrorCode, ListToolsRequestSchema, McpError } = require('@modelcontextprotocol/sdk/types');
 
 // Initialize server
 const server = new Server(
