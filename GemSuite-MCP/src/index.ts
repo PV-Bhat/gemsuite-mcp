@@ -1,0 +1,225 @@
+#!/usr/bin/env node
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import {
+  CallToolRequestSchema,
+  ErrorCode,
+  ListToolsRequestSchema,
+  McpError,
+} from '@modelcontextprotocol/sdk/types.js';
+import dotenv from 'dotenv';
+
+// Import unified handlers
+import { 
+  handleSearch, 
+  handleReason, 
+  handleProcess, 
+  handleAnalyze,
+  TOOL_NAMES 
+} from './handlers/unified-gemini.js';
+
+// Load environment variables
+dotenv.config();
+
+// Verify API key is available
+const API_KEY = process.env.GEMINI_API_KEY;
+if (!API_KEY) {
+  throw new Error('GEMINI_API_KEY environment variable is required');
+}
+
+/**
+ * Main server class for GemSuite MCP
+ */
+class GeminiServer {
+  private server: Server;
+
+  constructor() {
+    this.server = new Server(
+      {
+        name: 'gemsuite-mcp-server',
+        version: '0.3.0',
+      },
+      {
+        capabilities: {
+          tools: {},
+        },
+      }
+    );
+
+    this.setupToolHandlers();
+    
+    // Error handling
+    this.server.onerror = (error) => console.error('[MCP Error]', error);
+    process.on('SIGINT', async () => {
+      await this.server.close();
+      process.exit(0);
+    });
+  }
+
+  /**
+   * Sets up tool handlers for the MCP server
+   */
+  private setupToolHandlers() {
+    // List available tools
+    this.server.setRequestHandler(ListToolsRequestSchema, async () => ({
+      tools: [
+        {
+          name: TOOL_NAMES.GEM_SEARCH,
+          description: 'Generates responses based on the latest information using Gemini 2.0 Flash and Google Search. Best for general knowledge questions, fact-checking, and information retrieval.',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              query: {
+                type: 'string',
+                description: 'Your search query or question'
+              },
+              file_path: {
+                type: 'string',
+                description: 'Optional file path to include with the query'
+              },
+              model_id: {
+                type: 'string',
+                description: 'Optional model ID override (advanced users only)'
+              },
+              enable_thinking: {
+                type: 'boolean',
+                description: 'Enable thinking mode for step-by-step reasoning'
+              }
+            },
+            required: ['query'],
+          },
+        },
+        {
+          name: TOOL_NAMES.GEM_REASON,
+          description: 'Solves complex problems with step-by-step reasoning using Gemini 2.0 Flash Thinking. Best for math and science problems, coding challenges, and tasks requiring transparent reasoning process.',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              problem: {
+                type: 'string',
+                description: 'The complex problem or question to solve'
+              },
+              file_path: {
+                type: 'string',
+                description: 'Optional file path to include with the problem'
+              },
+              show_steps: {
+                type: 'boolean',
+                description: 'Whether to show detailed reasoning steps (default: true)',
+                default: true
+              },
+              model_id: {
+                type: 'string',
+                description: 'Optional model ID override (advanced users only)'
+              }
+            },
+            required: ['problem'],
+          },
+        },
+        {
+          name: TOOL_NAMES.GEM_PROCESS,
+          description: 'Performs fast, cost-efficient content processing using Gemini 2.0 Flash-Lite. Best for high-volume operations requiring speed and efficiency.',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              content: {
+                type: 'string',
+                description: 'Content to process (either this or file_path required)'
+              },
+              file_path: {
+                type: 'string',
+                description: 'File path to process (either this or content required)'
+              },
+              operation: {
+                type: 'string',
+                description: 'Processing operation (summarize, extract, restructure, simplify, expand, critique, feedback)',
+                enum: ['summarize', 'extract', 'restructure', 'simplify', 'expand', 'critique', 'feedback', 'analyze']
+              },
+              model_id: {
+                type: 'string',
+                description: 'Optional model ID override (advanced users only)'
+              }
+            },
+          },
+        },
+        {
+          name: TOOL_NAMES.GEM_ANALYZE,
+          description: 'Analyzes files using the appropriate Gemini model. Automatically selects the best model based on file type and analysis needs.',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              file_path: {
+                type: 'string',
+                description: 'Path to the file to analyze'
+              },
+              instruction: {
+                type: 'string',
+                description: 'Specific instruction for analysis (optional)'
+              },
+              model_id: {
+                type: 'string',
+                description: 'Optional model ID override (advanced users only)'
+              }
+            },
+            required: ['file_path'],
+          },
+        },
+      ],
+    }));
+
+    // Handle tool calls
+    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+      try {
+        switch (request.params.name) {
+          case TOOL_NAMES.GEM_SEARCH:
+            return await handleSearch(request);
+          case TOOL_NAMES.GEM_REASON:
+            return await handleReason(request);
+          case TOOL_NAMES.GEM_PROCESS:
+            return await handleProcess(request);
+          case TOOL_NAMES.GEM_ANALYZE:
+            return await handleAnalyze(request);
+          default:
+            throw new McpError(
+              ErrorCode.MethodNotFound,
+              `Unknown tool: ${request.params.name}`
+            );
+        }
+      } catch (error) {
+        console.error(`Error in tool handler for ${request.params.name}:`, error);
+        
+        if (error instanceof McpError) {
+          throw error;
+        }
+        
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Error: ${error instanceof Error ? error.message : 'Unknown error'}`
+            }
+          ],
+          isError: true
+        };
+      }
+    });
+  }
+
+  /**
+   * Starts the server
+   */
+  async run() {
+    const transport = new StdioServerTransport();
+    await this.server.connect(transport);
+    console.error('GemSuite MCP server running on stdio');
+  }
+}
+
+/**
+ * Create and run the server
+ */
+const server = new GeminiServer();
+server.run().catch(error => {
+  console.error('Fatal error starting server:', error);
+  process.exit(1);
+});
