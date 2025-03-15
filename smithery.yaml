@@ -1,0 +1,20 @@
+# Smithery configuration file for GemSuite MCP
+dockerfile: Dockerfile
+startCommand:
+  type: stdio
+configSchema:
+  type: object
+  required:
+    - geminiApiKey
+  properties:
+    geminiApiKey:
+      type: string
+      description: Your Google Gemini API key for accessing Gemini models.
+commandFunction: |-
+  (config) => ({
+    command: 'node',
+    args: ['build/index.js'],
+    env: {
+      GEMINI_API_KEY: config.geminiApiKey
+    }
+  })
