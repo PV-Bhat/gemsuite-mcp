@@ -1,30 +1,13 @@
-# Build stage
-FROM node:18-alpine AS build
+FROM node:18-alpine
 
 WORKDIR /app
 
 # Copy package.json and install dependencies
 COPY package.json ./
-RUN npm install
-
-# Copy source code
-COPY tsconfig.json ./
-COPY src/ ./src/
-
-# Build the application
-RUN npm run build
-
-# Production stage
-FROM node:18-alpine
-
-WORKDIR /app
-
-# Copy package.json and install production dependencies
-COPY package.json ./
 RUN npm install --only=production
 
-# Copy built application from build stage
-COPY --from=build /app/build ./build
+# Copy the simple JS implementation
+COPY simple-index.js ./
 
-# Run the application
-CMD ["node", "build/index.js"]
+# Run the simple JavaScript implementation
+CMD ["node", "simple-index.js"]
