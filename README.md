@@ -2,8 +2,10 @@
 
 <div align="center">
 
-![GemSuite MCP Logo](https://img.shields.io/badge/GemSuite-MCP-2D81FF?style=for-the-badge&logo=googlecloud&logoColor=white)
+<img src="https://github.com/user-attachments/assets/bc5d2361-9cb6-406e-815c-dbdef363b531" width="100">
 
+![GemSuite MCP Logo](https://img.shields.io/badge/GemSuite-MCP-2D81FF?style=for-the-badge&logo=googlecloud&logoColor=white)
+<br><br/>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-38c7b0?logo=cloudsmith)](https://modelcontextprotocol.ai/)
@@ -20,7 +22,7 @@
 
 ## 🌟 What is GemSuite MCP?
 
-GemSuite MCP is a powerful and elegant Model Context Protocol (MCP) server implementation that provides a unified interface to Google's Gemini AI models. It enables any MCP-compatible host (Claude, Cursor, Replit, etc.) to seamlessly leverage Gemini's capabilities with a focus on:
+GemSuite MCP is the ultimate Gemini API interface for MCP hosts, intelligently selecting models for the task at hand—delivering optimal performance, minimal token cost, and seamless integration. It enables any MCP-compatible host (Claude, Cursor, Replit, etc.) to seamlessly leverage Gemini's capabilities with a focus on:
 
 1. **Intelligence**: Automatically selects the optimal Gemini model based on task and content
 2. **Efficiency**: Optimizes token usage and performance across different workloads
