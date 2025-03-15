@@ -147,6 +147,9 @@ When using GemSuite MCP with Claude or other MCP-compatible hosts, the tools wil
 
 ## 📚 Usage Examples
 
+![image](https://github.com/user-attachments/assets/c2fae6de-84e4-4df7-8aab-751626567846)
+#### Claude Desktop Using GemSuite Gemini Search to access Google Search
+
 ### Processing Files (Most Token-Efficient)
 
 ```javascript
