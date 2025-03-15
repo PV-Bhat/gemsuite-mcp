@@ -4,10 +4,10 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package files first for better caching
-COPY package*.json ./
+COPY package.json package-lock.json* ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies with error output
+RUN npm install --no-optional && npm cache clean --force
 
 # Copy the rest of the application
 COPY . .
