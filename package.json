@@ -2,14 +2,11 @@
   "name": "gemsuite-mcp",
   "version": "1.0.0",
   "description": "Professional Gemini API integration for Claude and MCP-compatible hosts with intelligent model selection and advanced file handling",
-  "main": "build/index.js",
-  "type": "module",
+  "main": "simple-index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node build/index.js",
-    "dev": "tsc -w",
-    "test": "node test/test-gemini-tools.js",
-    "prepare": "npm run build"
+    "build": "echo 'No build step needed for CommonJS version'",
+    "start": "node simple-index.js",
+    "test": "node test/test-gemini-tools.js"
   },
   "keywords": [
     "gemini",
@@ -33,5 +30,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/PV-Bhat/gemsuite-mcp.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
