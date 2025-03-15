@@ -22,7 +22,7 @@
   "author": "PV-Bhat",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.3.0",
+    "@modelcontextprotocol/sdk": "^1.0.4"
     "axios": "^1.6.2",
     "dotenv": "^16.3.1"
   },
