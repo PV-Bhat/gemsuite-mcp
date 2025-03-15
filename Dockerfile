@@ -1,19 +1,18 @@
 FROM node:18-alpine
 
-# Set the working directory
 WORKDIR /app
 
-# Copy package files first for better caching
-COPY package.json package-lock.json* ./
+# Copy package files
+COPY package*.json ./
 
-# Install dependencies with error output
-RUN npm install --no-optional && npm cache clean --force
+# Install dependencies
+RUN npm install
 
-# Copy the rest of the application
+# Copy source files
 COPY . .
 
-# Build the TypeScript code
+# Build TypeScript
 RUN npm run build
 
-# Command to run the application
+# Start the server
 CMD ["node", "build/index.js"]
