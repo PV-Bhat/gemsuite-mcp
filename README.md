@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-38c7b0?logo=cloudsmith)](https://modelcontextprotocol.ai/)
-[![Smithery](https://img.shields.io/badge/Available%20on-Smithery-6D41A1)](https://smithery.ai/)
+[![smithery badge](https://smithery.ai/badge/@PV-Bhat/gemsuite-mcp)](https://smithery.ai/server/@PV-Bhat/gemsuite-mcp)
 [![Node.js](https://img.shields.io/badge/Node.js-16%2B-339933?logo=node.js)](https://nodejs.org/)
 
 **Professional Gemini API integration for Claude and all MCP-compatible hosts with intelligent model selection and advanced file handling**
