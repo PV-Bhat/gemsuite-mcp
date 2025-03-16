@@ -11,7 +11,9 @@
 [![MCP](https://img.shields.io/badge/MCP-Compatible-38c7b0?logo=cloudsmith)](https://modelcontextprotocol.ai/)
 [![smithery badge](https://smithery.ai/badge/@PV-Bhat/gemsuite-mcp)](https://smithery.ai/server/@PV-Bhat/gemsuite-mcp)
 [![Node.js](https://img.shields.io/badge/Node.js-16%2B-339933?logo=node.js)](https://nodejs.org/)
-
+<br><br/><a href="https://glama.ai/mcp/servers/m2ljvlatlu">
+  <img width="300" height="170" src="https://glama.ai/mcp/servers/m2ljvlatlu/badge" />
+</a><br><br/>
 **Professional Gemini API integration for Claude and all MCP-compatible hosts with intelligent model selection and advanced file handling**
 
 *Evolved from the [geminiserchMCP](https://github.com/Lorhlona/geminiserchMCP) project with enhanced capabilities*
@@ -355,7 +357,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/PV-Bhat/gemsuite-mcp)
-- [Smithery.ai Profile](https://smithery.ai/)
+- [Smithery.ai](https://smithery.ai/server/@PV-Bhat/gemsuite-mcp)
+- [Mcp.so](https://mcp.so/server/gemsuite-mcp)
+- [Glama](https://glama.ai/mcp/servers/m2ljvlatlu)
 - [Issue Tracker](https://github.com/PV-Bhat/gemsuite-mcp/issues)
 - [Model Context Protocol](https://modelcontextprotocol.ai/)
 
