@@ -1,8 +1,8 @@
-# GemSuite - Intelligent Gemini API MCP Server
-
+# GemSuite MCP: The Most Comprehensive Gemini API Integration for Model Context Protocol
+#### The ultimate open-source server for advanced Gemini API interaction with Model Context Protocol (MCP), intelligently selecting models for optimal performance, minimal token cost, and seamless integration.
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/bc5d2361-9cb6-406e-815c-dbdef363b531" width="100">
+<img src="https://github.com/user-attachments/assets/bc5d2361-9cb6-406e-815c-dbdef363b531" width="200">
 
 ![GemSuite MCP Logo](https://img.shields.io/badge/GemSuite-MCP-2D81FF?style=for-the-badge&logo=googlecloud&logoColor=white)
 <br><br/>
@@ -24,14 +24,23 @@
 
 ## 🌟 What is GemSuite MCP?
 
-GemSuite MCP is the ultimate Gemini API interface for MCP hosts, intelligently selecting models for the task at hand—delivering optimal performance, minimal token cost, and seamless integration. It enables any MCP-compatible host (Claude, Cursor, Replit, etc.) to seamlessly leverage Gemini's capabilities with a focus on:
+GemSuite (Model Context Protoco) MCP is the ultimate Gemini API integration interface for MCP hosts, intelligently selecting models for the task at hand—delivering optimal performance, minimal token cost, and seamless integration. It enables any MCP-compatible host (Claude, Cursor, Replit, etc.) to seamlessly leverage Gemini's capabilities with a focus on:
 
 1. **Intelligence**: Automatically selects the optimal Gemini model based on task and content
 2. **Efficiency**: Optimizes token usage and performance across different workloads
 3. **Simplicity**: Provides a clean, consistent API for complex AI operations
-4. **Versatility**: Handles multiple file types, operations, and use cases
+4. **Versatility**: Advanced file handling; Handles multiple file types, operations, and use cases
 
 Whether you're analyzing documents, solving complex problems, processing large text files, or searching for information, GemSuite MCP provides the right tools with the right models for the job.
+
+## Why GemSuite MCP?
+
+Unlike other Gemini MCP servers that offer limited functionality, GemSuite MCP provides:
+
+✅ **Intelligent Model Selection**: Automatically selects the optimal Gemini model based on task
+✅ **Unified File Handling**: Seamlessly processes various file types with automatic format detection
+✅ **Comprehensive Tool Suite**: Four specialized tools covering search, reasoning, processing, and analysis
+✅ **Production-Ready**: Deployed and validated on Smithery.ai, MCP.so, and Glama.io
 
 ## 🚀 Installation
 
@@ -368,3 +377,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/PV-Bhat">PV-Bhat</a></sub>
 </p>
+
+<!-- 
+Keywords: Best Gemini MCP server, Model Context Protocol integration, Gemini API tools, intelligent model selection, advanced file handling, Claude MCP integration, Gemini search MCP, Gemini reasoning, MCP file processing, Smithery.ai MCP server, MCP.so integration, Glama.io verified, production-ready MCP
+-->
