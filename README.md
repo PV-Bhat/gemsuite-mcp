@@ -1,4 +1,4 @@
-# GemSuite MCP
+# GemSuite - Intelligent Gemini API MCP Server
 
 <div align="center">
 
