@@ -48,7 +48,7 @@ Unlike other Gemini MCP servers that offer limited functionality, GemSuite MCP p
 
 ```bash
 # Install directly via Smithery CLI
-npx -y @smithery/cli@latest install gemsuite-mcp --client claude
+npx -y @smithery/cli@latest install @PV-Bhat/gemsuite-mcp --client claude
 ```
 
 ### Option 2: Manual Installation
